@@ -4,6 +4,8 @@ import { colorSchemes, type AspectRatio, type IThumbnail, type ThumbnailStyle } 
 import SoftBackDrop from "../components/SoftBackDrop";
 import AspextRatioSelector from "../components/AspextRatioSelector";
 import StyleSelector from "../components/StyleSelector";
+import ColorSchemeSelector from "../components/ColorSchemeSelector";
+import PreviewPanel from "../components/PreviewPanel";
 
 
 const Generate = () => {
@@ -15,7 +17,7 @@ const Generate = () => {
   const [thumbnail, setThumbnail] = useState<IThumbnail | null>(null)
   const [loading, setLoading] = useState(false)
 
-  const [aspectRatios, setAspectRatio] = useState<AspectRatio>('16:9')
+  const [aspectRatio, setAspectRatio] = useState<AspectRatio>('16:9')
   const [colorSchemeId, setColorSchemeId] = useState<string>(colorSchemes[0].id)
   const [style, setStyle] = useState<ThumbnailStyle>('Bold & Graphic')
 
@@ -46,10 +48,11 @@ const Generate = () => {
                       </div>
                     </div>
                     {/* AspextRatioSelector */}
-                    <AspextRatioSelector value={aspectRatios} onChange={setAspectRatio}/>
+                    <AspextRatioSelector value={aspectRatio} onChange={setAspectRatio}/>
                     {/* StyleSelector */}
                     <StyleSelector value={style} onChange={setStyle} isOpen={styleDropdownOpen} setIsOpen={setStyleDropdownOpen}/>
                     {/* ColorSchemeSelector */}
+                    <ColorSchemeSelector value={colorSchemeId} onChange={setColorSchemeId}/>
 
                     {/* DETAILS */}
                     <div className="space-y-2">
@@ -70,7 +73,12 @@ const Generate = () => {
                 </div>
               </div>
               {/*RIGHT PANEL*/}
-              <div></div>
+              <div>
+                <div className="p-6 rounded-2xl bg-white/8 border border-white/10 shadow-xl">
+                  <h2 className="text-lg font-semibold text-zinc-100 mb-4">Preview</h2>
+                  <PreviewPanel thumbnail={thumbnail} isLoading={loading} aspectRatio={aspectRatio}/>
+                </div>
+              </div>
           </div>
         </main>
       </div>
