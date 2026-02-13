@@ -1,6 +1,6 @@
 
 
-const SoftBackDrop = () => {
+const SoftBackdrop = () => {
   return (
             <div className='fixed inset-0 -z-1 pointer-events-none'>
                 <div className='absolute left-1/2 top-20 -translate-x-1/2 w-245 h-115 bg-linear-to-tr from-pink-800/35 to-transparent rounded-full blur-3xl' />
@@ -9,4 +9,4 @@ const SoftBackDrop = () => {
   )
 }
 
-export default SoftBackDrop
+export default SoftBackdrop

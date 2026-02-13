@@ -1,7 +1,7 @@
-import { Ratio, RectangleHorizontal, RectangleVertical, Square } from "lucide-react"
+import { RectangleHorizontal, RectangleVertical, Square } from "lucide-react"
 import { aspectRatios, type AspectRatio } from "../assets/assets"
 
-const AspextRatioSelector = ({value, onChange} : {value:AspectRatio; onChange:(ratio:AspectRatio)=>void}) => {
+const AspectRatioSelector = ({value, onChange} : {value:AspectRatio; onChange:(ratio:AspectRatio)=>void}) => {
 
     const iconMap = {
         '16:9' : <RectangleHorizontal className="size-6"/>,
@@ -30,4 +30,4 @@ const AspextRatioSelector = ({value, onChange} : {value:AspectRatio; onChange:(r
   )
 }
 
-export default AspextRatioSelector
+export default AspectRatioSelector

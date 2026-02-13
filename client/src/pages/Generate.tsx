@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-import { colorSchemes, type AspectRatio, type IThumbnail, type ThumbnailStyle } from "../assets/assets";
-import SoftBackDrop from "../components/SoftBackDrop";
-import AspextRatioSelector from "../components/AspextRatioSelector";
+import { colorSchemes, dummyThumbnails, type AspectRatio, type IThumbnail, type ThumbnailStyle } from "../assets/assets";
+import SoftBackdrop from "../components/SoftBackdrop";
+import AspectRatioSelector from "../components/AspectRatioSelector";
 import StyleSelector from "../components/StyleSelector";
 import ColorSchemeSelector from "../components/ColorSchemeSelector";
 import PreviewPanel from "../components/PreviewPanel";
@@ -23,10 +23,32 @@ const Generate = () => {
 
   const [styleDropdownOpen, setStyleDropdownOpen] = useState(false)
 
+  const handleGenerate = async () => {
+
+  }
+
+  const fetchThumbnail = async () => {
+    if(id){
+      const thumbnail : any = dummyThumbnails.find((thumbnail)=> thumbnail._id === id);
+      setThumbnail(thumbnail)
+      setAdditionalDetails(thumbnail.user_prompt)
+      setTitle(thumbnail.title)
+      setColorSchemeId(thumbnail.color_scheme)
+      setAspectRatio(thumbnail.aspect_ratio)
+      setStyle(thumbnail.style)
+      setLoading(false)
+    }
+  }
+
+  useEffect(()=>{
+    if(id){
+      fetchThumbnail()
+    }
+  },[id])
 
   return (
     <>
-      <SoftBackDrop />
+      <SoftBackdrop />
       <div className="pt-24 min-h-screen">
         <main className="max-w-6x1 mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-28 lg:pb:8">
           <div className="grid lg:grid-cols-[400px_1fr] gap-8">
@@ -47,8 +69,8 @@ const Generate = () => {
                         <span className="text-xs text-zinc-400">{title.length}/100</span>
                       </div>
                     </div>
-                    {/* AspextRatioSelector */}
-                    <AspextRatioSelector value={aspectRatio} onChange={setAspectRatio}/>
+                    {/* AspectRatioSelector */}
+                    <AspectRatioSelector value={aspectRatio} onChange={setAspectRatio}/>
                     {/* StyleSelector */}
                     <StyleSelector value={style} onChange={setStyle} isOpen={styleDropdownOpen} setIsOpen={setStyleDropdownOpen}/>
                     {/* ColorSchemeSelector */}
@@ -66,7 +88,7 @@ const Generate = () => {
 
                     {/* BUTTON */}
                     {!id &&(
-                      <button className="text-[15px] w-full py-3.5 rounded-xl font-medium bg-linear-to-b from-pink-500 to-pink-600 hover:from-pink-700 disabled:cursor-not-allowed transition-colors">
+                      <button onClick={handleGenerate} className="text-[15px] w-full py-3.5 rounded-xl font-medium bg-linear-to-b from-pink-500 to-pink-600 hover:from-pink-700 disabled:cursor-not-allowed transition-colors">
                         {loading ? 'Generating...' : 'Generate Thumbnail'}
                       </button>
                     )}

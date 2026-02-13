@@ -1,6 +1,6 @@
 import React from "react"
 import { useState } from "react"
-import SoftBackDrop from "./SoftBackDrop"
+import SoftBackdrop from "./SoftBackdrop"
 
 
 const Login = () => {
@@ -23,7 +23,7 @@ const Login = () => {
     }
   return (
     <>
-    <SoftBackDrop />
+    <SoftBackdrop />
     <div className="min-h-screen flex items-center justify-center">
 <form
                 onSubmit={handleSubmit}
