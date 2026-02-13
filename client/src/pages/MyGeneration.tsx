@@ -93,7 +93,7 @@ const MyGeneration = () => {
                   <p className="text-xs text-zinc-500">{new Date(thumb.createdAt!).toDateString()}</p>
                 </div>
 
-                <div className="absolute bottom-2 right-2 max-sm:flex sm:hidden group-hover:flex gap-1.5">
+                <div onClick={(e)=>e.stopPropagation()} className="absolute bottom-2 right-2 max-sm:flex sm:hidden group-hover:flex gap-1.5">
 
                     <TrashIcon
                     onClick={()=> handleDelete(thumb._id)}
