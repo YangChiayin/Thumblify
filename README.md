@@ -1,1 +1,1 @@
-# AI Thumbnail Generator App using React | MERN Stack + Gemini API 
+# AI Thumbnail Generator App using React | MERN Stack + Gemini API
