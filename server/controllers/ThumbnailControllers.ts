@@ -56,7 +56,7 @@ export const generateThumbnail = async (req: Request, res: Response)=>{
             safetySettings:[
                 {category: HarmCategory.HARM_CATEGORY_HATE_SPEECH, threshold:HarmBlockThreshold.OFF},
                 {category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold:HarmBlockThreshold.OFF},
-                {category: HarmCategory.HARM_CATEGORY_IMAGE_SEXUALLY_EXPLICIT, threshold:HarmBlockThreshold.OFF},
+                {category: HarmCategory.HARM_CATEGORY_SEXUALLY_EXPLICIT, threshold:HarmBlockThreshold.OFF},
                 {category: HarmCategory.HARM_CATEGORY_HARASSMENT, threshold:HarmBlockThreshold.OFF}
             ]
         }
@@ -120,3 +120,18 @@ export const generateThumbnail = async (req: Request, res: Response)=>{
         res.status(500).json({message: error.message});
     }
 }
+
+    // Controllers For Thumbnail Deletion
+    export const deleteThumbnail = async (req: Request, res: Response)=>{
+        try {
+            const {id} = req.params
+            const {userId} = req.session
+
+            await Thumbnail.findByIdAndDelete({_id: id, userId})
+
+            res.json({ message: 'Thumbnail deleted successfully'})
+        } catch (error: any) {
+            console.log(error);
+            res.status(500).json({message: error.message});
+        }
+    }

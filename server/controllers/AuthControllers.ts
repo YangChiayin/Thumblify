@@ -58,7 +58,7 @@ export const loginUser = async (req: Request, res: Response) =>{
         req.session.userId = user._id;
 
         return res.json({
-            message: 'Login successfully',
+            message: 'Login successful',
             user: {
                 _id: user._id,
                 name: user.name,
