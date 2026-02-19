@@ -136,8 +136,4 @@ This repository includes `vercel.json` in both `client/` and `server/` indicatin
 
 ---
 
-If you'd like, I can also:
-- Add examples of request/response payloads for the API
-- Add a sample `.env.example` file in both `server/` and `client/`
-- Add badges and CI config for tests and linting
-
+Tutorial: https://youtu.be/LpHfmr1CKEI?si=u9iVA6QIRepn9V4f
