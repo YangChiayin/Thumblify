@@ -1,6 +1,5 @@
 import { DownloadIcon, ImageIcon, Loader2Icon } from "lucide-react";
 import type { AspectRatio, IThumbnail } from "../assets/assets";
-import { div } from "motion/react-client";
 
 
 const PreviewPanel = ({thumbnail, isLoading, aspectRatio} : {thumbnail: IThumbnail | null, isLoading: boolean; aspectRatio: AspectRatio}) => {
@@ -13,14 +12,18 @@ const PreviewPanel = ({thumbnail, isLoading, aspectRatio} : {thumbnail: IThumbna
 
     const OnDownload = ()=>{
         if(!thumbnail?.image_url) return;
-        window.open(thumbnail.image_url, '_blank')
+        const link = document.createElement('a')
+        link.href = thumbnail?.image_url.replace('/upload', '/upload/fl_attachment')
+        document.body.appendChild(link);
+        link.click()
+        link.remove()
     }
   return (
     <div className="relative mx-auto w-full max-w-2xl">
         <div className={`relative overflow-hidden ${aspectClasses[aspectRatio]}`}>
             {/* Loading state */}
             {isLoading && (
-                <div className="absolute inset-0 flex flex-col otems-center justify-center gap-4 bg-black/25">
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/25">
                     <Loader2Icon className="size-8 animate-spin text-zinc-400"/>
                     <div className="text-center">
                         <p className="text-sm font-medium text-zinc-200">AI is creating your thumbnail...</p>
